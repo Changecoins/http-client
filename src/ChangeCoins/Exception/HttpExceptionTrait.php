@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Exception;
 
-use ChangeCoins\Message\ResponseInterface;
+use ChangeCoins\Message\RequestInterface;
 
 trait HttpExceptionTrait
 {
     /**
-     * @var ResponseInterface
+     * @var RequestInterface
      */
     private $response;
 
     /**
-     * @param ResponseInterface $response
+     * @param RequestInterface $response
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(RequestInterface $response)
     {
         $this->response = $response;
 
@@ -27,9 +27,9 @@ trait HttpExceptionTrait
     }
 
     /**
-     * @return ResponseInterface
+     * @return RequestInterface
      */
-    public function getResponse(): ResponseInterface
+    public function getResponse(): RequestInterface
     {
         return $this->response;
     }

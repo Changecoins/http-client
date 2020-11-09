@@ -6,7 +6,7 @@ namespace ChangeCoins\Message;
 
 use ChangeCoins\Exception\JsonException;
 
-class CurlHttpResponse implements ResponseInterface
+class HttpResponse implements ResponseInterface
 {
     use CommonResponseTrait;
 
@@ -101,7 +101,7 @@ class CurlHttpResponse implements ResponseInterface
 
         try {
             $decodedResult = json_decode($this->result, true, 512, JSON_BIGINT_AS_STRING);
-        } catch (\JsonException $e) {
+        } catch (\RuntimeException $e) {
             throw new JsonException(
                 sprintf('%s for "%s".', $e->getMessage(), $this->getInfo('url')),
                 $e->getCode()
@@ -117,4 +117,3 @@ class CurlHttpResponse implements ResponseInterface
         return $decodedResult;
     }
 }
-

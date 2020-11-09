@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Message;
 
-class CurlHttpRequest extends Request
+class HttpRequest extends Request
 {
     /**
      * @var array
      */
-    private $headers;
+    private $headers = [
+        'Accept' => 'Application/json',
+    ];
 
     /**
      * @var array
      */
     private $options = [
-        CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_TIMEOUT        => 60,
         CURLOPT_USERAGENT      => 'ChangeCoins-PHP-SDK',
         CURLOPT_HEADER         => false,
         CURLINFO_HEADER_OUT    => true,
@@ -36,7 +36,7 @@ class CurlHttpRequest extends Request
     /**
      * @var array
      */
-    private $bodyData;
+    private $bodyData = [];
 
     /**
      * @inheritDoc
@@ -93,9 +93,27 @@ class CurlHttpRequest extends Request
     /**
      * @inheritDoc
      */
+    public function withUrl(string $url): RequestInterface
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFullUrl(): string
+    {
+        return sprintf('%s/%s', $this->getBaseUrl(), $this->getUrl());
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getUrl(): string
     {
-        return sprintf('%s/%s', $this->getBaseUrl(), $this->url);
+        return $this->url;
     }
 
     /**
@@ -133,5 +151,12 @@ class CurlHttpRequest extends Request
     {
         return $this->bodyData;
     }
-}
 
+    /**
+     * @return string
+     */
+    public function getBodyAsJson(): array
+    {
+        return json_encode($this->getBody());
+    }
+}

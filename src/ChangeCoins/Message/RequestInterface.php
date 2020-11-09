@@ -44,9 +44,19 @@ interface RequestInterface
     public function getHeaders(): array;
 
     /**
+     * @param string
+     */
+    public function withUrl(string $url): self;
+
+    /**
      * @return string
      */
     public function getUrl(): string;
+
+    /**
+     * @return string
+     */
+    public function getFullUrl(): string;
 
     /**
      * @param string $method
@@ -71,4 +81,9 @@ interface RequestInterface
      * @return array
      */
     public function getBody(): array;
+
+    /**
+     * @return string
+     */
+    public function getBodyAsJson(): array;
 }

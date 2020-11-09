@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ChangeCoins\Middleware;
+namespace ChangeCoins\Handler;
 
 use ChangeCoins\Message\RequestInterface;
 
-interface HandlerRequestInterface
+interface RequestHandlerInterface
 {
     /**
      * @param RequestInterface $request
