@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ChangeCoins\Middleware;
+namespace ChangeCoins\Handler;
 
 use ChangeCoins\Message\ResponseInterface;
 
-interface HandlerResponseInterface
+interface ResponseHandlerInterface
 {
     /**
      * @param ResponseInterface $response

@@ -2,21 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ChangeCoins\Client;
+namespace ChangeCoins;
 
-use ChangeCoins\Client\ClientExceptionInterface;
+use ChangeCoins\Exception\ClientExceptionInterface;
 use ChangeCoins\Message\RequestInterface;
 use ChangeCoins\Message\ResponseInterface;
 
-interface HttpClientInterface
+interface ClientInterface
 {
     /**
      * @param RequestInterface $request
      *
-     * @return ResponseInterface
+     * @return RequestInterface
      *
      * @throws ClientExceptionInterface If an error happens while processing the request.
      */
     public function sendRequest(RequestInterface $request): ResponseInterface;
 }
-
