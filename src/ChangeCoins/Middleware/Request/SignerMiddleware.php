@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ChangeCoins\Middleware\Request;
 
 use ChangeCoins\Handler\RequestHandlerInterface;
-use ChangeCoins\Message\RequestInterface;
+use ChangeCoins\Request\RequestInterface;
 use ChangeCoins\Middleware\RequestMiddlewareInterface;
 
 class SignerMiddleware implements RequestMiddlewareInterface
@@ -40,7 +40,7 @@ class SignerMiddleware implements RequestMiddlewareInterface
             ->withHeader('X-Processing-Payload', $this->cratePayload($request))
             ->withHeader('X-Processing-Signature', $this->createSignature($request));
 
-        return $request;
+        return $handler->handle($request);
     }
 
     /**

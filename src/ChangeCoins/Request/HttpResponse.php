@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ChangeCoins\Message;
+namespace ChangeCoins\Request;
 
 use ChangeCoins\Exception\JsonException;
 

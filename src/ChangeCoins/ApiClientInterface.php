@@ -5,24 +5,34 @@ declare(strict_types=1);
 namespace ChangeCoins;
 
 use ChangeCoins\Dto\BalanceDto;
+use ChangeCoins\Dto\DepositCreateDto;
 use ChangeCoins\Dto\InvoiceCreateDto;
 use ChangeCoins\Dto\InvoiceStatusDto;
 use ChangeCoins\Dto\OutcomeSendDto;
 use ChangeCoins\Dto\TransactionDto;
-use ChangeCoins\Factory\ClientFactory;
-use ChangeCoins\Message\ResponseInterface;
+use ChangeCoins\Factory\RequestConfig;
+use ChangeCoins\Request\ResponseInterface;
 
 interface ApiClientInterface
 {
     /**
-     * @param ClientFactory $factory
+     * @param RequestConfig $requestConfig
      */
-    public function __construct(ClientFactory $factory);
+    public function __construct(RequestConfig $requestConfig);
 
     /**
+     * @param BalanceDto $invoiceCreateDto
+     *
      * @return ResponseInterface
      */
-    public function getRates(): ResponseInterface;
+    public function getBalance(BalanceDto $invoiceCreateDto): ResponseInterface;
+
+    /**
+     * @param DepositCreateDto $invoiceCreateDto
+     *
+     * @return ResponseInterface
+     */
+    public function depositCreate(DepositCreateDto $invoiceCreateDto): ResponseInterface;
 
     /**
      * @param OutcomeSendDto $outcomeSendDto
@@ -46,16 +56,14 @@ interface ApiClientInterface
     public function invoiceGetStatus(InvoiceStatusDto $invoiceCreateDto): ResponseInterface;
 
     /**
-     * @param BalanceDto $invoiceCreateDto
-     *
-     * @return ResponseInterface
-     */
-    public function getBalance(BalanceDto $invoiceCreateDto): ResponseInterface;
-
-    /**
      * @param TransactionDto $invoiceCreateDto
      *
      * @return ResponseInterface
      */
-    public function transactionGetStatus(TransactionDto $invoiceCreateDto): ResponseInterface;
+    public function transactionStatus(TransactionDto $invoiceCreateDto): ResponseInterface;
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getRates(): ResponseInterface;
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ChangeCoins;
 
 use ChangeCoins\Exception\ClientExceptionInterface;
-use ChangeCoins\Message\RequestInterface;
-use ChangeCoins\Message\ResponseInterface;
+use ChangeCoins\Request\RequestInterface;
+use ChangeCoins\Request\ResponseInterface;
 
 interface ClientInterface
 {

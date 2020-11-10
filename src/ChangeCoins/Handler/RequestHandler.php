@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Handler;
 
-use ChangeCoins\Message\RequestInterface;
+use ChangeCoins\Request\RequestInterface;
 use ChangeCoins\Middleware\RequestMiddlewareInterface;
 
 class RequestHandler implements RequestHandlerInterface
