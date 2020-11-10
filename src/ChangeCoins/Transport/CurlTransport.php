@@ -6,10 +6,10 @@ namespace ChangeCoins\Transport;
 
 use ChangeCoins\Exception\ConfigurationException;
 use ChangeCoins\Factory\RequestConfig;
-use ChangeCoins\Message\HttpRequest;
-use ChangeCoins\Message\HttpResponse;
-use ChangeCoins\Message\RequestInterface;
-use ChangeCoins\Message\ResponseInterface;
+use ChangeCoins\Request\HttpRequest;
+use ChangeCoins\Request\HttpResponse;
+use ChangeCoins\Request\RequestInterface;
+use ChangeCoins\Request\ResponseInterface;
 
 class CurlTransport implements TransportInterface
 {
@@ -17,6 +17,11 @@ class CurlTransport implements TransportInterface
      * @var $requestConfig
      */
     private $requestConfig;
+
+    /**
+     * @var resource
+     */
+    private $curl;
 
     /**
      * @param RequestConfig $requestConfig
@@ -28,6 +33,7 @@ class CurlTransport implements TransportInterface
         }
 
         $this->requestConfig = $requestConfig;
+        $this->curl          = curl_init();
     }
 
     /**
@@ -35,19 +41,22 @@ class CurlTransport implements TransportInterface
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        $ch = curl_init();
-        curl_setopt_array($ch, array_replace($this->requestConfig->getOptions(), $request->getOptions()));
-        curl_setopt($ch, CURLOPT_URL, $request->getFullUrl());
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
+        curl_setopt_array($this->curl, array_replace($this->requestConfig->getOptions(), $request->getOptions()));
+        curl_setopt($this->curl, CURLOPT_URL, $request->getFullUrl());
+        curl_setopt($this->curl, CURLOPT_HTTPHEADER, $request->getHeaders());
 
         if ($request->getMethod() === HttpRequest::METHOD_POST) {
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request->getBody()));
+            curl_setopt($this->curl, CURLOPT_POST, true);
+            curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($request->getBody()));
         }
 
-        $result = curl_exec($ch);
-        curl_close($ch);
+        $result = curl_exec($this->curl);
 
-        return new HttpResponse($result ?: '', $ch);
+        return new HttpResponse($result ?: '', $this->curl);
+    }
+
+    public function __destruct()
+    {
+        curl_close($this->curl);
     }
 }

@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace ChangeCoins;
 
 use ChangeCoins\Dto\BalanceDto;
+use ChangeCoins\Dto\DepositCreateDto;
 use ChangeCoins\Dto\InvoiceCreateDto;
 use ChangeCoins\Dto\InvoiceStatusDto;
 use ChangeCoins\Dto\OutcomeSendDto;
 use ChangeCoins\Dto\TransactionDto;
+use ChangeCoins\Enum\Api;
 use ChangeCoins\Factory\ClientFactory;
-use ChangeCoins\Factory\ClientFactoryInterface;
-use ChangeCoins\Message\HttpRequest;
-use ChangeCoins\Message\Request;
-use ChangeCoins\Message\ResponseInterface;
+use ChangeCoins\Factory\RequestConfig;
+use ChangeCoins\Request\HttpRequest;
+use ChangeCoins\Request\Request;
+use ChangeCoins\Request\ResponseInterface;
 
 class ApiClient implements ApiClientInterface
 {
@@ -23,22 +25,35 @@ class ApiClient implements ApiClientInterface
     private $client;
 
     /**
-     * @param ClientFactory $factory
+     * @param RequestConfig $requestConfig
      */
-    public function __construct(ClientFactoryInterface $factory)
+    public function __construct(RequestConfig $requestConfig)
     {
-        $this->client = $factory->create();
+        $this->client = (new ClientFactory($requestConfig))->create();
     }
 
     /**
      * @inheritDoc
      */
-    public function getRates(): ResponseInterface
+    public function getBalance(BalanceDto $invoiceCreateDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
-            ->withMethod(Request::METHOD_GET)
-            ->withUrl('v2/rate');
+            ->withUrl(Api::URL_BALANCE)
+            ->withBody($invoiceCreateDto->toArray());
+
+        return $this->client->sendRequest($request);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function depositCreate(DepositCreateDto $invoiceCreateDto): ResponseInterface
+    {
+        $request = new HttpRequest();
+        $request
+            ->withUrl(Api::URL_DEPOSIT_CREATE)
+            ->withBody($invoiceCreateDto->toArray());
 
         return $this->client->sendRequest($request);
     }
@@ -50,7 +65,7 @@ class ApiClient implements ApiClientInterface
     {
         $request = new HttpRequest();
         $request
-            ->withUrl('v2/outcome/send')
+            ->withUrl(Api::URL_OUTCOME_SEND)
             ->withBody($outcomeSendDto->toArray());
 
         return $this->client->sendRequest($request);
@@ -63,7 +78,7 @@ class ApiClient implements ApiClientInterface
     {
         $request = new HttpRequest();
         $request
-            ->withUrl('v2/invoice/create')
+            ->withUrl(Api::URL_INVOICE_CREATE)
             ->withBody($invoiceCreateDto->toArray());
 
         return $this->client->sendRequest($request);
@@ -76,7 +91,7 @@ class ApiClient implements ApiClientInterface
     {
         $request = new HttpRequest();
         $request
-            ->withUrl('v2/invoice/status')
+            ->withUrl(Api::URL_INVOICE_STATUS)
             ->withBody($invoiceCreateDto->toArray());
 
         return $this->client->sendRequest($request);
@@ -85,11 +100,11 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function getBalance(BalanceDto $invoiceCreateDto): ResponseInterface
+    public function transactionStatus(TransactionDto $invoiceCreateDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
-            ->withUrl('v2/balance')
+            ->withUrl(Api::URL_TRANSACTION_STATUS)
             ->withBody($invoiceCreateDto->toArray());
 
         return $this->client->sendRequest($request);
@@ -98,12 +113,12 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function transactionGetStatus(TransactionDto $invoiceCreateDto): ResponseInterface
+    public function getRates(): ResponseInterface
     {
         $request = new HttpRequest();
         $request
-            ->withUrl('v2/transaction/status')
-            ->withBody($invoiceCreateDto->toArray());
+            ->withMethod(Request::METHOD_GET)
+            ->withUrl(Api::URL_RATE);
 
         return $this->client->sendRequest($request);
     }

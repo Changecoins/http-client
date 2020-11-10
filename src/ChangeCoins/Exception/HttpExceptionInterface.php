@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Exception;
 
-use ChangeCoins\Message\RequestInterface;
+use ChangeCoins\Request\ResponseInterface;
 
 /**
  * Base interface for HTTP-related exceptions.
@@ -12,7 +12,7 @@ use ChangeCoins\Message\RequestInterface;
 interface HttpExceptionInterface extends ExceptionInterface
 {
     /**
-     * @return RequestInterface
+     * @return ResponseInterface
      */
-    public function getResponse(): RequestInterface;
+    public function getResponse(): ResponseInterface;
 }

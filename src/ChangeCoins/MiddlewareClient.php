@@ -6,8 +6,8 @@ namespace ChangeCoins;
 
 use ChangeCoins\Handler\RequestHandlerInterface;
 use ChangeCoins\Handler\ResponseHandlerInterface;
-use ChangeCoins\Message\RequestInterface;
-use ChangeCoins\Message\ResponseInterface;
+use ChangeCoins\Request\RequestInterface;
+use ChangeCoins\Request\ResponseInterface;
 use ChangeCoins\Transport\TransportInterface;
 
 class MiddlewareClient implements ClientInterface

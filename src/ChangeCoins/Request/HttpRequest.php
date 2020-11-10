@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ChangeCoins\Message;
+namespace ChangeCoins\Request;
 
 class HttpRequest extends Request
 {
@@ -105,7 +105,7 @@ class HttpRequest extends Request
      */
     public function getFullUrl(): string
     {
-        return sprintf('%s/%s', $this->getBaseUrl(), $this->getUrl());
+        return sprintf('%s/%s/%s', $this->getBaseUrl(), self::API_DEFAULT_VERSION, $this->getUrl());
     }
 
     /**

@@ -3,13 +3,21 @@
 declare(strict_types=1);
 
 use ChangeCoins\ApiClient;
-use ChangeCoins\Factory\ClientFactory;
+use ChangeCoins\Dto\BalanceDto;
+use ChangeCoins\Exception\ValidationException;
 use ChangeCoins\Factory\RequestConfig;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$clientFactory = new ClientFactory(new RequestConfig('secretKey', 'publicKey'));
+$client = new ApiClient(new RequestConfig('secretKey', 'publicKey'));
 
-$client = new ApiClient($clientFactory);
+try {
+//    $balanceDto = new BalanceDto();
+//    $balanceDto->setNonce(time());
+//    $result = $client->getBalance($balance)->toArray();
 
-var_dump($client->getRates()->toArray());die;
+    $result = $client->getRates()->toArray();
+    echo json_encode($result, JSON_PRETTY_PRINT);
+} catch (ValidationException $exception) {
+    echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
+}
