@@ -29,7 +29,7 @@ class Url implements ConstraintInterface
         if (
             !array_key_exists($this->attributeName, $data) ||
             $data[$this->attributeName] === '' ||
-            filter_input($data[$this->attributeName], FILTER_VALIDATE_URL)
+            !filter_var($data[$this->attributeName], FILTER_VALIDATE_URL)
         ) {
             $validator->addError(sprintf('The "%s" parameter is not a valid url!', $this->attributeName));
         }

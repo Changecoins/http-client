@@ -8,26 +8,26 @@ use ChangeCoins\Handler\RequestHandlerInterface;
 use ChangeCoins\Request\RequestInterface;
 use ChangeCoins\Middleware\RequestMiddlewareInterface;
 
-class SignerMiddleware implements RequestMiddlewareInterface
+class RequestSignerMiddleware implements RequestMiddlewareInterface
 {
-    /**
-     * @var string
-     */
-    private $secretKey;
-
     /**
      * @var string
      */
     private $publicKey;
 
     /**
-     * @param string $secretKey
-     * @param string $publicKey
+     * @var string
      */
-    public function __construct(string $secretKey, string $publicKey)
+    private $secretKey;
+
+    /**
+     * @param string $publicKey
+     * @param string $secretKey
+     */
+    public function __construct(string $publicKey, string $secretKey)
     {
-        $this->secretKey = $secretKey;
         $this->publicKey = $publicKey;
+        $this->secretKey = $secretKey;
     }
 
     /**

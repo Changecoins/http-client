@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Factory;
 
-final class RequestConfig
+class RequestConfig
 {
     /**
      * @var string
@@ -24,6 +24,7 @@ final class RequestConfig
     /**
      * @param string $publicKey
      * @param string $secretKey
+     * @param array  $options
      */
     public function __construct(string $publicKey, string $secretKey, array $options = [])
     {

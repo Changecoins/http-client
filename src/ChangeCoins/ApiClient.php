@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace ChangeCoins;
 
 use ChangeCoins\Dto\BalanceDto;
-use ChangeCoins\Dto\DepositCreateDto;
-use ChangeCoins\Dto\InvoiceCreateDto;
-use ChangeCoins\Dto\InvoiceStatusDto;
+use ChangeCoins\Dto\DepositDto;
+use ChangeCoins\Dto\InvoiceDto;
+use ChangeCoins\Dto\InvoiceDto;
 use ChangeCoins\Dto\OutcomeSendDto;
 use ChangeCoins\Dto\TransactionDto;
 use ChangeCoins\Enum\Api;
 use ChangeCoins\Factory\ClientFactory;
-use ChangeCoins\Factory\RequestConfig;
+use ChangeCoins\Factory\ClientFactoryInterface;
 use ChangeCoins\Request\HttpRequest;
 use ChangeCoins\Request\Request;
 use ChangeCoins\Request\ResponseInterface;
@@ -25,22 +25,22 @@ class ApiClient implements ApiClientInterface
     private $client;
 
     /**
-     * @param RequestConfig $requestConfig
+     * @param ClientFactoryInterface $clientFactory
      */
-    public function __construct(RequestConfig $requestConfig)
+    public function __construct(ClientFactoryInterface $clientFactory)
     {
-        $this->client = (new ClientFactory($requestConfig))->create();
+        $this->client = $clientFactory->create();
     }
 
     /**
      * @inheritDoc
      */
-    public function getBalance(BalanceDto $invoiceCreateDto): ResponseInterface
+    public function getBalance(BalanceDto $balanceDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
             ->withUrl(Api::URL_BALANCE)
-            ->withBody($invoiceCreateDto->toArray());
+            ->withBody($balanceDto->toArray());
 
         return $this->client->sendRequest($request);
     }
@@ -48,12 +48,12 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function depositCreate(DepositCreateDto $invoiceCreateDto): ResponseInterface
+    public function depositCreate(DepositDto $depositCreateDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
             ->withUrl(Api::URL_DEPOSIT_CREATE)
-            ->withBody($invoiceCreateDto->toArray());
+            ->withBody($depositCreateDto->toArray());
 
         return $this->client->sendRequest($request);
     }
@@ -74,7 +74,7 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function invoiceCreate(InvoiceCreateDto $invoiceCreateDto): ResponseInterface
+    public function invoiceCreate(InvoiceDto $invoiceCreateDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
@@ -87,12 +87,12 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function invoiceGetStatus(InvoiceStatusDto $invoiceCreateDto): ResponseInterface
+    public function invoiceStatus(InvoiceDto $invoiceStatusDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
             ->withUrl(Api::URL_INVOICE_STATUS)
-            ->withBody($invoiceCreateDto->toArray());
+            ->withBody($invoiceStatusDto->toArray());
 
         return $this->client->sendRequest($request);
     }
@@ -100,12 +100,12 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function transactionStatus(TransactionDto $invoiceCreateDto): ResponseInterface
+    public function transactionStatus(TransactionDto $transactionDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
             ->withUrl(Api::URL_TRANSACTION_STATUS)
-            ->withBody($invoiceCreateDto->toArray());
+            ->withBody($transactionDto->toArray());
 
         return $this->client->sendRequest($request);
     }

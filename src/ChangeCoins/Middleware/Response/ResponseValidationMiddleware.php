@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Middleware\Response;
 
-use ChangeCoins\Exception\ValidationException;
+use ChangeCoins\Exception\ResponseValidationException;
 use ChangeCoins\Handler\ResponseHandlerInterface;
 use ChangeCoins\Request\ResponseInterface;
 use ChangeCoins\Middleware\ResponseMiddlewareInterface;
 
-class ValidationErrorMiddleware implements ResponseMiddlewareInterface
+class ResponseValidationMiddleware implements ResponseMiddlewareInterface
 {
     /**
      * @inheritDoc
@@ -19,7 +19,7 @@ class ValidationErrorMiddleware implements ResponseMiddlewareInterface
         $responseData = $response->toArray();
 
         if (array_key_exists('err_code', $responseData)) {
-            throw new ValidationException($responseData['err_description'], $responseData['err_code']);
+            throw new ResponseValidationException($responseData['err_description'], $responseData['err_code']);
         }
 
         return $handler->handle($response);

@@ -13,4 +13,8 @@ class Api
     public const URL_OUTCOME_SEND       = 'outcome/send';
     public const URL_TRANSACTION_STATUS = 'transaction/status';
     public const URL_RATE               = 'rate';
+
+    public const API_VERSION_2       = 'v2';
+    public const API_DEFAULT_VERSION = self::API_VERSION_2;
+
 }
