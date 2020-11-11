@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Dto;
 
-class DepositCreateDto
+class InvoiceDto
 {
     /**
      * @var string
@@ -59,9 +59,9 @@ class DepositCreateDto
     /**
      * @param string $externalId
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setExternalId(string $externalId): DepositCreateDto
+    public function setExternalId(string $externalId): InvoiceDto
     {
         $this->externalId = $externalId;
 
@@ -71,9 +71,9 @@ class DepositCreateDto
     /**
      * @param string $title
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setTitle(string $title): DepositCreateDto
+    public function setTitle(string $title): InvoiceDto
     {
         $this->title = $title;
 
@@ -83,9 +83,9 @@ class DepositCreateDto
     /**
      * @param string $description
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setDescription(string $description): DepositCreateDto
+    public function setDescription(string $description): InvoiceDto
     {
         $this->description = $description;
 
@@ -95,9 +95,9 @@ class DepositCreateDto
     /**
      * @param float $amount
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setAmount(float $amount): DepositCreateDto
+    public function setAmount(float $amount): InvoiceDto
     {
         $this->amount = $amount;
 
@@ -107,9 +107,9 @@ class DepositCreateDto
     /**
      * @param string $currency
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setCurrency(string $currency): DepositCreateDto
+    public function setCurrency(string $currency): InvoiceDto
     {
         $this->currency = $currency;
 
@@ -119,9 +119,9 @@ class DepositCreateDto
     /**
      * @param string $currencyConvert
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setCurrencyConvert(string $currencyConvert): DepositCreateDto
+    public function setCurrencyConvert(string $currencyConvert): InvoiceDto
     {
         $this->currencyConvert = $currencyConvert;
 
@@ -131,9 +131,9 @@ class DepositCreateDto
     /**
      * @param int $limitMinute
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setLimitMinute(int $limitMinute): DepositCreateDto
+    public function setLimitMinute(int $limitMinute): InvoiceDto
     {
         $this->limitMinute = $limitMinute;
 
@@ -143,9 +143,9 @@ class DepositCreateDto
     /**
      * @param string $returnUrl
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setReturnUrl(string $returnUrl): DepositCreateDto
+    public function setReturnUrl(string $returnUrl): InvoiceDto
     {
         $this->returnUrl = $returnUrl;
 
@@ -155,9 +155,9 @@ class DepositCreateDto
     /**
      * @param string $callbackUrl
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setCallbackUrl(string $callbackUrl): DepositCreateDto
+    public function setCallbackUrl(string $callbackUrl): InvoiceDto
     {
         $this->callbackUrl = $callbackUrl;
 
@@ -167,9 +167,9 @@ class DepositCreateDto
     /**
      * @param int $nonce
      *
-     * @return DepositCreateDto
+     * @return InvoiceDto
      */
-    public function setNonce(int $nonce): DepositCreateDto
+    public function setNonce(int $nonce): InvoiceDto
     {
         $this->nonce = $nonce;
 

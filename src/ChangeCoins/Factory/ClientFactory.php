@@ -9,8 +9,8 @@ use ChangeCoins\Enum\Api;
 use ChangeCoins\Handler\RequestHandler;
 use ChangeCoins\Handler\ResponseHandler;
 use ChangeCoins\Middleware\Request\RequestValidatorMiddleware;
-use ChangeCoins\Middleware\Request\SignerMiddleware;
-use ChangeCoins\Middleware\Response\ValidationErrorMiddleware;
+use ChangeCoins\Middleware\Request\RequestSignerMiddleware;
+use ChangeCoins\Middleware\Response\ResponseValidationMiddleware;
 use ChangeCoins\MiddlewareClient;
 use ChangeCoins\Storage\ArrayStorage;
 use ChangeCoins\Storage\StorageInterface;
@@ -22,7 +22,7 @@ use ChangeCoins\Validator\InvoiceStatusRequestValidator;
 use ChangeCoins\Validator\OutcomeSendRequestValidator;
 use ChangeCoins\Validator\TransactionRequestValidator;
 
-final class ClientFactory implements ClientFactoryInterface
+class ClientFactory implements ClientFactoryInterface
 {
     /**
      * @var RequestConfig
@@ -47,13 +47,13 @@ final class ClientFactory implements ClientFactoryInterface
             new CurlTransport($this->requestConfig),
             new RequestHandler([
                 new RequestValidatorMiddleware($this->createValidatorStorage()),
-                new SignerMiddleware(
-                    $this->requestConfig->getSecretKey(),
-                    $this->requestConfig->getPublicKey()
+                new RequestSignerMiddleware(
+                    $this->requestConfig->getPublicKey(),
+                    $this->requestConfig->getSecretKey()
                 ),
             ]),
             new ResponseHandler([
-                new ValidationErrorMiddleware(),
+                new ResponseValidationMiddleware(),
             ])
         );
     }

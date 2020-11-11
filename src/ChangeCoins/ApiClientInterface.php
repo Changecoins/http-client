@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace ChangeCoins;
 
 use ChangeCoins\Dto\BalanceDto;
-use ChangeCoins\Dto\DepositCreateDto;
-use ChangeCoins\Dto\InvoiceCreateDto;
-use ChangeCoins\Dto\InvoiceStatusDto;
+use ChangeCoins\Dto\DepositDto;
+use ChangeCoins\Dto\InvoiceDto;
+use ChangeCoins\Dto\InvoiceDto;
 use ChangeCoins\Dto\OutcomeSendDto;
 use ChangeCoins\Dto\TransactionDto;
-use ChangeCoins\Factory\RequestConfig;
+use ChangeCoins\Factory\ClientFactoryInterface;
 use ChangeCoins\Request\ResponseInterface;
 
 interface ApiClientInterface
 {
     /**
-     * @param RequestConfig $requestConfig
+     * @param ClientFactoryInterface $clientFactory
      */
-    public function __construct(RequestConfig $requestConfig);
+    public function __construct(ClientFactoryInterface $clientFactory);
 
     /**
      * @param BalanceDto $invoiceCreateDto
@@ -28,11 +28,11 @@ interface ApiClientInterface
     public function getBalance(BalanceDto $invoiceCreateDto): ResponseInterface;
 
     /**
-     * @param DepositCreateDto $invoiceCreateDto
+     * @param DepositDto $invoiceCreateDto
      *
      * @return ResponseInterface
      */
-    public function depositCreate(DepositCreateDto $invoiceCreateDto): ResponseInterface;
+    public function depositCreate(DepositDto $invoiceCreateDto): ResponseInterface;
 
     /**
      * @param OutcomeSendDto $outcomeSendDto
@@ -42,18 +42,18 @@ interface ApiClientInterface
     public function moneySend(OutcomeSendDto $outcomeSendDto): ResponseInterface;
 
     /**
-     * @param InvoiceCreateDto $invoiceCreateDto
+     * @param InvoiceDto $invoiceCreateDto
      *
      * @return ResponseInterface
      */
-    public function invoiceCreate(InvoiceCreateDto $invoiceCreateDto): ResponseInterface;
+    public function invoiceCreate(InvoiceDto $invoiceCreateDto): ResponseInterface;
 
     /**
-     * @param InvoiceStatusDto $invoiceCreateDto
+     * @param InvoiceDto $invoiceCreateDto
      *
      * @return ResponseInterface
      */
-    public function invoiceGetStatus(InvoiceStatusDto $invoiceCreateDto): ResponseInterface;
+    public function invoiceStatus(InvoiceDto $invoiceCreateDto): ResponseInterface;
 
     /**
      * @param TransactionDto $invoiceCreateDto

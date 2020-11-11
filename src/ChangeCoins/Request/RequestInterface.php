@@ -27,6 +27,11 @@ interface RequestInterface
     public function hasHeader(string $name): bool;
 
     /**
+     * @return array
+     */
+    public function getHeaders(): array;
+
+    /**
      * @param array $options
      *
      * @return $this
@@ -37,11 +42,6 @@ interface RequestInterface
      * @return array
      */
     public function getOptions(): array;
-
-    /**
-     * @return array
-     */
-    public function getHeaders(): array;
 
     /**
      * @param string
@@ -85,5 +85,5 @@ interface RequestInterface
     /**
      * @return string
      */
-    public function getBodyAsJson(): array;
+    public function getBodyAsJson(): string;
 }

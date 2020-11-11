@@ -29,7 +29,7 @@ class ArrayStorage implements StorageInterface, \Countable
     /**
      * @inheritDoc
      */
-    public function exits(string $name): bool
+    public function exists(string $name): bool
     {
         return array_key_exists($name, $this->validatorList);
     }

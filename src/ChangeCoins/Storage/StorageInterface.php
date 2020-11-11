@@ -19,7 +19,7 @@ interface StorageInterface
      *
      * @return bool
      */
-    public function exits(string $name): bool;
+    public function exists(string $name): bool;
 
     /**
      * @param string $name
