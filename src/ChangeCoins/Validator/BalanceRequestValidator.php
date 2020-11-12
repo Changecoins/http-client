@@ -6,7 +6,7 @@ namespace ChangeCoins\Validator;
 
 use ChangeCoins\Validator\Constraint\NotEmpty;
 
-class BalanceReuestValidator extends AbstractValidator
+class BalanceRequestValidator extends AbstractValidator
 {
     /**
      * @inheritDoc
