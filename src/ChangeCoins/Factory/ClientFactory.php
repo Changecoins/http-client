@@ -15,7 +15,7 @@ use ChangeCoins\MiddlewareClient;
 use ChangeCoins\Storage\ArrayStorage;
 use ChangeCoins\Storage\StorageInterface;
 use ChangeCoins\Transport\CurlTransport;
-use ChangeCoins\Validator\BalanceReuestValidator;
+use ChangeCoins\Validator\BalanceRequestValidator;
 use ChangeCoins\Validator\DepositCreateRequestValidator;
 use ChangeCoins\Validator\InvoiceCreateRequestValidator;
 use ChangeCoins\Validator\InvoiceStatusRequestValidator;
@@ -64,7 +64,7 @@ class ClientFactory implements ClientFactoryInterface
     private function createValidatorStorage(): StorageInterface
     {
         $validatorStorage = new ArrayStorage();
-        $validatorStorage->add(Api::URL_BALANCE, new BalanceReuestValidator());
+        $validatorStorage->add(Api::URL_BALANCE, new BalanceRequestValidator());
         $validatorStorage->add(Api::URL_DEPOSIT_CREATE, new DepositCreateRequestValidator());
         $validatorStorage->add(Api::URL_INVOICE_CREATE, new InvoiceCreateRequestValidator());
         $validatorStorage->add(Api::URL_INVOICE_STATUS, new InvoiceStatusRequestValidator());
