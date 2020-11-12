@@ -48,7 +48,7 @@ class MiddlewareClientTest extends TestCase
         $this->responseHandlerMock = $this->getMockForAbstractClass(ResponseHandlerInterface::class);
     }
 
-    public function testSendRequest()
+    public function testSendRequest(): void
     {
         $this->requestHandlerMock
             ->expects($this->once())

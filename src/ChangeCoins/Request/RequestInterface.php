@@ -13,7 +13,7 @@ interface RequestInterface
 
     /**
      * @param string $name
-     * @param        $value
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -44,7 +44,7 @@ interface RequestInterface
     public function getOptions(): array;
 
     /**
-     * @param string
+     * @param string $url
      */
     public function withUrl(string $url): self;
 

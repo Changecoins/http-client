@@ -23,8 +23,10 @@ class OutcomeSendDtoTest extends TestCase
      * @param array $outcomeData
      *
      * @dataProvider outcomeSendDataProvider
+     *
+     * @return void
      */
-    public function testToArray(array $outcomeData)
+    public function testToArray(array $outcomeData): void
     {
         $this->userDtoMock
             ->method('toArray')

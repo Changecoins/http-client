@@ -16,5 +16,4 @@ class Api
 
     public const API_VERSION_2       = 'v2';
     public const API_DEFAULT_VERSION = self::API_VERSION_2;
-
 }

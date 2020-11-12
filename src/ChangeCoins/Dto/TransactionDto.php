@@ -7,12 +7,12 @@ namespace ChangeCoins\Dto;
 class TransactionDto
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $externalId;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $nonce;
 

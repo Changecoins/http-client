@@ -13,3 +13,10 @@ phpunit.phar
 # local phpunit config
 phpunit.xml
 .phpunit.result.cache
+
+# local phpcs config
+phpcs.xml
+.phpcs-cache
+
+# local phpmd config
+phpmd.xml

@@ -7,7 +7,6 @@ namespace ChangeCoins;
 use ChangeCoins\Dto\BalanceDto;
 use ChangeCoins\Dto\DepositDto;
 use ChangeCoins\Dto\InvoiceDto;
-use ChangeCoins\Dto\InvoiceDto;
 use ChangeCoins\Dto\OutcomeSendDto;
 use ChangeCoins\Dto\TransactionDto;
 use ChangeCoins\Enum\Api;
@@ -24,11 +23,6 @@ class ApiClientTest extends TestCase
      * @var ClientInterface|MockObject
      */
     private $clientMock;
-
-    /**
-     * @var ClientFactoryInterface|MockObject
-     */
-    private $clientFactoryMock;
 
     /**
      * @var ResponseInterface|MockObject
@@ -73,8 +67,6 @@ class ApiClientTest extends TestCase
     protected function setUp(): void
     {
         $this->clientMock        = $this->getMockForAbstractClass(ClientInterface::class);
-        $this->clientFactoryMock = $this->getMockForAbstractClass(ClientFactoryInterface::class);
-
         $this->responseMock = $this->getMockForAbstractClass(ResponseInterface::class);
 
         $this->balanceDtoMock       = $this->getMockBuilder(BalanceDto::class)->getMock();
@@ -92,7 +84,7 @@ class ApiClientTest extends TestCase
         $this->apiClient = new ApiClient($clientFactory);
     }
 
-    public function testGetBalance()
+    public function testGetBalance(): void
     {
         $balanceData = [
             'nonce' => 123456,
@@ -120,7 +112,7 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testDepositCreate()
+    public function testDepositCreate(): void
     {
         $depositData = [
             'externalid' => 'some-id',
@@ -152,7 +144,7 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testMoneySend()
+    public function testMoneySend(): void
     {
         $outcomeSendData = [
             'externalid' => 'id',
@@ -181,7 +173,7 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testInvoiceGetStatus()
+    public function testInvoiceGetStatus(): void
     {
         $invoiceStatusData = [
             'externalid' => 'id',
@@ -209,7 +201,7 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testInvoiceCreate()
+    public function testInvoiceCreate(): void
     {
         $invoiceCreateData = [
             'externalid' => 'id',
@@ -238,7 +230,7 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testTransactionStatus()
+    public function testTransactionStatus(): void
     {
         $transactionData = [
             'externalid' => 'some-id',
@@ -267,7 +259,7 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testGetRates()
+    public function testGetRates(): void
     {
         $restRequest = new HttpRequest();
         $restRequest

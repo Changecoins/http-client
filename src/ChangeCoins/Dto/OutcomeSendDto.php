@@ -7,32 +7,32 @@ namespace ChangeCoins\Dto;
 class OutcomeSendDto
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $externalId;
 
     /**
-     * @var float
+     * @var float|null
      */
     private $amount;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $currency;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $callbackUrl;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $nonce;
 
     /**
-     * @var UserDataDto
+     * @var UserDataDto|null
      */
     private $userdata;
 
@@ -108,13 +108,16 @@ class OutcomeSendDto
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return [
             'externalid'   => $this->externalId,
             'amount'       => $this->amount,
             'currency'     => $this->currency,
-            'userdata'     => $this->userdata->toArray(),
+            'userdata'     => $this->userdata ? $this->userdata->toArray() : null,
             'callback_url' => $this->callbackUrl,
             'nonce'        => $this->nonce,
         ];

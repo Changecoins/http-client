@@ -14,7 +14,7 @@ use ChangeCoins\Request\ResponseInterface;
 class CurlTransport implements TransportInterface
 {
     /**
-     * @var $requestConfig
+     * @var RequestConfig
      */
     private $requestConfig;
 
@@ -52,7 +52,7 @@ class CurlTransport implements TransportInterface
 
         $result = curl_exec($this->curl);
 
-        return new HttpResponse($result ?: '', $this->curl);
+        return new HttpResponse((is_string($result)) ? $result : '', $this->curl);
     }
 
     public function __destruct()

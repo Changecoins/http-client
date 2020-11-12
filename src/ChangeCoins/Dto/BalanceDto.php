@@ -7,7 +7,7 @@ namespace ChangeCoins\Dto;
 class BalanceDto
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $nonce;
 
@@ -24,7 +24,9 @@ class BalanceDto
     }
 
     /**
-     * @return int[]
+     * @return (int|null)[]
+     *
+     * @psalm-return array{nonce: int|null}
      */
     public function toArray(): array
     {

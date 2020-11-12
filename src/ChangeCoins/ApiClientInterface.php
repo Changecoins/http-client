@@ -7,7 +7,6 @@ namespace ChangeCoins;
 use ChangeCoins\Dto\BalanceDto;
 use ChangeCoins\Dto\DepositDto;
 use ChangeCoins\Dto\InvoiceDto;
-use ChangeCoins\Dto\InvoiceDto;
 use ChangeCoins\Dto\OutcomeSendDto;
 use ChangeCoins\Dto\TransactionDto;
 use ChangeCoins\Factory\ClientFactoryInterface;

@@ -21,7 +21,7 @@ class UrlTest extends TestCase
         $this->validatorMock = $this->getMockForAbstractClass(ValidatorInterface::class);
     }
 
-    public function test__invoke()
+    public function testMagicMethod(): void
     {
         $testAttributeName = 'test-name';
 
