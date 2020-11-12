@@ -12,8 +12,7 @@ abstract class Request implements RequestInterface
     /**
      * @var string
      */
-//    private $baseUrl = 'https://apimerchant.changecoins.io';
-    private $baseUrl = 'http://apimerchant.changecoins.local';
+    private $baseUrl = 'https://apimerchant.changecoins.io';
 
     /**
      * @return string

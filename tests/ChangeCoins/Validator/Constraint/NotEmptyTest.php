@@ -21,7 +21,7 @@ class NotEmptyTest extends TestCase
         $this->validatorMock = $this->getMockForAbstractClass(ValidatorInterface::class);
     }
 
-    public function test__invoke(): void
+    public function testInvokeMagicMethod(): void
     {
         $testAttributeName = 'test-name';
 

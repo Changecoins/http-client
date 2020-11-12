@@ -7,4 +7,3 @@ namespace ChangeCoins\Exception;
 interface DecodingExceptionInterface extends ExceptionInterface
 {
 }
-

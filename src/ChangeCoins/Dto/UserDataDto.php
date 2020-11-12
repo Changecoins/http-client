@@ -7,7 +7,7 @@ namespace ChangeCoins\Dto;
 class UserDataDto
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $payee;
 
@@ -24,9 +24,11 @@ class UserDataDto
     }
 
     /**
-     * @return string[]
+     * @return (null|string)[]
+     *
+     * @psalm-return array{payee: null|string}
      */
-    public function ToArray(): array
+    public function toArray(): array
     {
         return [
             'payee' => $this->payee,

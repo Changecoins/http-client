@@ -13,7 +13,7 @@ interface ClientInterface
     /**
      * @param RequestInterface $request
      *
-     * @return RequestInterface
+     * @return ResponseInterface
      *
      * @throws ClientExceptionInterface If an error happens while processing the request.
      */

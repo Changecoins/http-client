@@ -11,7 +11,7 @@ class HttpResponse implements ResponseInterface
     use CommonResponseTrait;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $jsonDecodedData;
 
@@ -40,7 +40,7 @@ class HttpResponse implements ResponseInterface
      */
     public function getStatusCode(): int
     {
-        return curl_getinfo($this->curlResource, CURLINFO_RESPONSE_CODE);
+        return (int) curl_getinfo($this->curlResource, CURLINFO_RESPONSE_CODE);
     }
 
     /**
@@ -84,7 +84,7 @@ class HttpResponse implements ResponseInterface
 
         if ($this->jsonDecodedData !== null) {
             return $this->jsonDecodedData;
-        } 
+        }
 
 
         $contentType = $this->headers['content-type'][0] ?? 'application/json';
@@ -92,9 +92,8 @@ class HttpResponse implements ResponseInterface
         if (!preg_match('/\bjson\b/i', $contentType)) {
             throw new JsonException(
                 sprintf(
-                    'Response content-type is "%s" while a JSON-compatible one was expected for "%s".',
-                    $contentType,
-                    $this->getInfo('url')
+                    'Response content-type is "%s" while a JSON-compatible one was expected".',
+                    $contentType
                 )
             );
         }
@@ -102,10 +101,7 @@ class HttpResponse implements ResponseInterface
         try {
             $decodedResult = json_decode($this->result, true, 512, JSON_BIGINT_AS_STRING);
         } catch (\RuntimeException $e) {
-            throw new JsonException(
-                sprintf('%s for "%s".', $e->getMessage(), $this->getInfo('url')),
-                $e->getCode()
-            );
+            throw new JsonException($e->getMessage(), (int) $e->getCode());
         }
 
         if (!is_array($decodedResult)) {

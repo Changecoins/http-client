@@ -7,52 +7,52 @@ namespace ChangeCoins\Dto;
 class DepositDto
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $externalId;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $title;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $description;
 
     /**
-     * @var float
+     * @var float|null
      */
     private $amount;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $currency;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $currencyConvert;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $limitMinute;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $returnUrl;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $callbackUrl;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $nonce;
 

@@ -28,7 +28,7 @@ class HttpRequest extends Request
     /**
      * @var string
      */
-    private $url;
+    private $url = '';
 
     /**
      * @var string

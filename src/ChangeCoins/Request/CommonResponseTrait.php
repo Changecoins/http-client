@@ -17,7 +17,7 @@ trait CommonResponseTrait
      */
     private function checkStatusCode(): void
     {
-        $code = $this->getInfo('http_code');
+        $code = $this->getStatusCode();
 
         if (500 <= $code) {
             throw new ServerException($this);

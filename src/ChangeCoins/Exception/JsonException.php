@@ -10,4 +10,3 @@ namespace ChangeCoins\Exception;
 class JsonException extends \RuntimeException implements DecodingExceptionInterface
 {
 }
-

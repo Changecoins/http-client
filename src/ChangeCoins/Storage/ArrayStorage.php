@@ -8,7 +8,10 @@ use ChangeCoins\Validator\ValidatorInterface;
 
 class ArrayStorage implements StorageInterface, \Countable
 {
-    private $validatorList;
+    /**
+     * @var ValidatorInterface[]
+     */
+    private $validatorList = [];
 
     /**
      * @return int
