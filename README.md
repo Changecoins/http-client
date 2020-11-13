@@ -14,13 +14,13 @@ declare(strict_types=1);
 
 namespace App;
 
-use ChangeCoins\ApiClient;
+use ChangeCoins\ClientFacade;
 use ChangeCoins\Factory\RequestConfig;
 
 ...
 
-$clientFactory = new ClientFactory(new RequestConfig('secretKey', 'publicKey'));
-$client        = new ApiClient($clientFactory);
+$clientFacade = new ClientFacade(new RequestConfig('secretKey', 'publicKey'));
+$client       = $clientFacade->createClient();
 ```
 
 ## Request examples
