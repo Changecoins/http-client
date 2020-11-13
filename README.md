@@ -19,8 +19,8 @@ use ChangeCoins\Factory\RequestConfig;
 
 ...
 
-$client = new ApiClient(new RequestConfig('secretKey', 'publicKey'));
-$result = $client->getRates();
+$clientFactory = new ClientFactory(new RequestConfig('secretKey', 'publicKey'));
+$client        = new ApiClient($clientFactory);
 ```
 
 ## Request examples
