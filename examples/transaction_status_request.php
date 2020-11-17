@@ -15,10 +15,12 @@ $client       = $clientFacade->createClient();
 try {
     $transactionDto = new TransactionDto();
     $transactionDto
-        ->setExternalId('your-external-id')
+        ->setExternalId('your-internal-id')
         ->setNonce(time());
 
     $result = $client->transactionStatus($transactionDto)->toArray();
+
+    // Your business logic
 } catch (ResponseValidationException $exception) {
     echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
 }

@@ -29,7 +29,7 @@ class NotEmpty implements ConstraintInterface
         if (
             !array_key_exists($this->attributeName, $data) ||
             $data[$this->attributeName] === null ||
-            trim($data[$this->attributeName]) === ''
+            (is_string($data[$this->attributeName]) && trim($data[$this->attributeName]) === '')
         ) {
             $validator->addError(sprintf('The "%s" parameter is required!', $this->attributeName));
         }

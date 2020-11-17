@@ -16,12 +16,15 @@ try {
     $invoiceDto = new InvoiceDto();
     $invoiceDto
         ->setExternalId('your-internal-id')
-        ->setAmount(100.00)
-        ->setCurrency('USD')
+        ->setAmount(0.01)
+        ->setCurrency('LTC')
         ->setReturnUrl('https://your-domain.io/return-url')
+        ->setCallbackUrl('https://your-domain.io/calback-url')
         ->setNonce(time());
 
     $response = $client->invoiceCreate($invoiceDto)->toArray();
+
+    // Your business logic
 } catch (ResponseValidationException $exception) {
     echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
 }

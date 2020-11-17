@@ -17,6 +17,8 @@ try {
     $balanceDto->setNonce(time());
 
     $result = $client->getBalance($balanceDto)->toArray();
+
+    // Your business logic
 } catch (ResponseValidationException $exception) {
     echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
 }

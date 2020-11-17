@@ -7,7 +7,7 @@ namespace ChangeCoins\Dto;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class OutcomeSendDtoTest extends TestCase
+class WithdrawalDtoTest extends TestCase
 {
     /**
      * @var UserDataDto|MockObject
@@ -22,7 +22,7 @@ class OutcomeSendDtoTest extends TestCase
     /**
      * @param array $outcomeData
      *
-     * @dataProvider outcomeSendDataProvider
+     * @dataProvider withdrawalDataProvider
      *
      * @return void
      */
@@ -32,7 +32,7 @@ class OutcomeSendDtoTest extends TestCase
             ->method('toArray')
             ->willReturn($outcomeData['userdata']);
 
-        $outcomeSendDto = new OutcomeSendDto();
+        $outcomeSendDto = new WithdrawalDto();
         $outcomeSendDto
             ->setExternalId($outcomeData['externalid'])
             ->setAmount($outcomeData['amount'])
@@ -50,7 +50,7 @@ class OutcomeSendDtoTest extends TestCase
     /**
      * @return array[][]
      */
-    public function outcomeSendDataProvider(): array
+    public function withdrawalDataProvider(): array
     {
         return [
             'full filled data'      => [

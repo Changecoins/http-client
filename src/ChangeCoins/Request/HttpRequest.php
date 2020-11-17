@@ -12,7 +12,7 @@ class HttpRequest extends Request
      * @var array
      */
     private $headers = [
-        'Accept' => 'Application/json',
+        'Accept: application/json',
     ];
 
     /**
@@ -53,7 +53,7 @@ class HttpRequest extends Request
      */
     public function withHeader(string $name, $value): RequestInterface
     {
-        $this->headers[$name] = $value;
+        $this->headers[] = "$name: $value";
 
         return $this;
     }
@@ -63,7 +63,7 @@ class HttpRequest extends Request
      */
     public function hasHeader(string $name): bool
     {
-        return array_key_exists($name, $this->headers);
+        return in_array($name, $this->headers);
     }
 
     /**
