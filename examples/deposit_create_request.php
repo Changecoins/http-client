@@ -16,11 +16,12 @@ try {
     $depositDto = new DepositDto();
     $depositDto
         ->setExternalId('your-external-id')
-        ->setAmount(100.00)
-        ->setCurrency('USD')
+        ->setCurrency('LTC')
         ->setNonce(time());
 
     $result = $client->depositCreate($depositDto)->toArray();
+
+    // Your business logic
 } catch (ResponseValidationException $exception) {
     echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
 }

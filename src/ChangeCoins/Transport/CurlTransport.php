@@ -6,7 +6,6 @@ namespace ChangeCoins\Transport;
 
 use ChangeCoins\Exception\ConfigurationException;
 use ChangeCoins\Factory\RequestConfig;
-use ChangeCoins\Request\HttpRequest;
 use ChangeCoins\Request\HttpResponse;
 use ChangeCoins\Request\RequestInterface;
 use ChangeCoins\Request\ResponseInterface;
@@ -44,11 +43,9 @@ class CurlTransport implements TransportInterface
         curl_setopt_array($this->curl, array_replace($this->requestConfig->getOptions(), $request->getOptions()));
         curl_setopt($this->curl, CURLOPT_URL, $request->getFullUrl());
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, $request->getHeaders());
+        curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $request->getMethod());
+        curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($request->getBody()));
 
-        if ($request->getMethod() === HttpRequest::METHOD_POST) {
-            curl_setopt($this->curl, CURLOPT_POST, true);
-            curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($request->getBody()));
-        }
 
         $result = curl_exec($this->curl);
 

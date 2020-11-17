@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Dto;
 
-class OutcomeSendDto
+class WithdrawalDto
 {
     /**
      * @var string|null
@@ -39,9 +39,9 @@ class OutcomeSendDto
     /**
      * @param string $externalId
      *
-     * @return OutcomeSendDto
+     * @return WithdrawalDto
      */
-    public function setExternalId(string $externalId): OutcomeSendDto
+    public function setExternalId(string $externalId): WithdrawalDto
     {
         $this->externalId = $externalId;
 
@@ -51,9 +51,9 @@ class OutcomeSendDto
     /**
      * @param float $amount
      *
-     * @return OutcomeSendDto
+     * @return WithdrawalDto
      */
-    public function setAmount(float $amount): OutcomeSendDto
+    public function setAmount(float $amount): WithdrawalDto
     {
         $this->amount = $amount;
 
@@ -63,9 +63,9 @@ class OutcomeSendDto
     /**
      * @param string $currency
      *
-     * @return OutcomeSendDto
+     * @return WithdrawalDto
      */
-    public function setCurrency(string $currency): OutcomeSendDto
+    public function setCurrency(string $currency): WithdrawalDto
     {
         $this->currency = $currency;
 
@@ -75,9 +75,9 @@ class OutcomeSendDto
     /**
      * @param string $callbackUrl
      *
-     * @return OutcomeSendDto
+     * @return WithdrawalDto
      */
-    public function setCallbackUrl(string $callbackUrl): OutcomeSendDto
+    public function setCallbackUrl(string $callbackUrl): WithdrawalDto
     {
         $this->callbackUrl = $callbackUrl;
 
@@ -87,9 +87,9 @@ class OutcomeSendDto
     /**
      * @param int $nonce
      *
-     * @return OutcomeSendDto
+     * @return WithdrawalDto
      */
-    public function setNonce(int $nonce): OutcomeSendDto
+    public function setNonce(int $nonce): WithdrawalDto
     {
         $this->nonce = $nonce;
 
@@ -99,9 +99,9 @@ class OutcomeSendDto
     /**
      * @param UserDataDto $userdata
      *
-     * @return OutcomeSendDto
+     * @return WithdrawalDto
      */
-    public function setUserdata(UserDataDto $userdata): OutcomeSendDto
+    public function setUserdata(UserDataDto $userdata): WithdrawalDto
     {
         $this->userdata = $userdata;
 

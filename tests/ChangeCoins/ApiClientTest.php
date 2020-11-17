@@ -7,12 +7,12 @@ namespace ChangeCoins;
 use ChangeCoins\Dto\BalanceDto;
 use ChangeCoins\Dto\DepositDto;
 use ChangeCoins\Dto\InvoiceDto;
-use ChangeCoins\Dto\OutcomeSendDto;
+use ChangeCoins\Dto\WithdrawalDto;
+use ChangeCoins\Dto\RateDto;
 use ChangeCoins\Dto\TransactionDto;
 use ChangeCoins\Enum\Api;
 use ChangeCoins\Factory\ClientFactoryInterface;
 use ChangeCoins\Request\HttpRequest;
-use ChangeCoins\Request\Request;
 use ChangeCoins\Request\ResponseInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -40,9 +40,9 @@ class ApiClientTest extends TestCase
     private $depositCreateDtoMock;
 
     /**
-     * @var OutcomeSendDto|MockObject
+     * @var WithdrawalDto|MockObject
      */
-    private $outcomeSendDtoMock;
+    private $withdrawalDto;
 
     /**
      * @var InvoiceDto|MockObject
@@ -60,21 +60,27 @@ class ApiClientTest extends TestCase
     private $transactionDtoMock;
 
     /**
+     * @var RateDto|MockObject
+     */
+    private $rateDtoMock;
+
+    /**
      * @var ApiClient
      */
     private $apiClient;
 
     protected function setUp(): void
     {
-        $this->clientMock        = $this->getMockForAbstractClass(ClientInterface::class);
+        $this->clientMock   = $this->getMockForAbstractClass(ClientInterface::class);
         $this->responseMock = $this->getMockForAbstractClass(ResponseInterface::class);
 
         $this->balanceDtoMock       = $this->getMockBuilder(BalanceDto::class)->getMock();
         $this->depositCreateDtoMock = $this->getMockBuilder(DepositDto::class)->getMock();
-        $this->outcomeSendDtoMock   = $this->getMockBuilder(OutcomeSendDto::class)->getMock();
+        $this->withdrawalDto        = $this->getMockBuilder(WithdrawalDto::class)->getMock();
         $this->invoiceCreateDtoMock = $this->getMockBuilder(InvoiceDto::class)->getMock();
         $this->invoiceStatusDtoMock = $this->getMockBuilder(InvoiceDto::class)->getMock();
         $this->transactionDtoMock   = $this->getMockBuilder(TransactionDto::class)->getMock();
+        $this->rateDtoMock          = $this->getMockBuilder(RateDto::class)->getMock();
 
         $clientFactory = $this->getMockForAbstractClass(ClientFactoryInterface::class);
         $clientFactory->expects($this->once())
@@ -144,14 +150,14 @@ class ApiClientTest extends TestCase
         );
     }
 
-    public function testMoneySend(): void
+    public function testCreateWithdrawal(): void
     {
         $outcomeSendData = [
             'externalid' => 'id',
             'currency'   => 'UAH'
         ];
 
-        $this->outcomeSendDtoMock
+        $this->withdrawalDto
             ->expects($this->once())
             ->method('toArray')
             ->willReturn($outcomeSendData);
@@ -169,35 +175,7 @@ class ApiClientTest extends TestCase
 
         $this->assertInstanceOf(
             ResponseInterface::class,
-            $this->apiClient->moneySend($this->outcomeSendDtoMock)
-        );
-    }
-
-    public function testInvoiceGetStatus(): void
-    {
-        $invoiceStatusData = [
-            'externalid' => 'id',
-        ];
-
-        $this->invoiceStatusDtoMock
-            ->expects($this->once())
-            ->method('toArray')
-            ->willReturn($invoiceStatusData);
-
-        $restRequest = new HttpRequest();
-        $restRequest
-            ->withUrl(Api::URL_INVOICE_STATUS)
-            ->withBody($invoiceStatusData);
-
-        $this->clientMock
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->with($this->equalTo($restRequest))
-            ->willReturn($this->responseMock);
-
-        $this->assertInstanceOf(
-            ResponseInterface::class,
-            $this->apiClient->invoiceStatus($this->invoiceStatusDtoMock)
+            $this->apiClient->createWithdrawal($this->withdrawalDto)
         );
     }
 
@@ -261,10 +239,19 @@ class ApiClientTest extends TestCase
 
     public function testGetRates(): void
     {
+        $rateData = [
+            'nonce' => 12345,
+        ];
+
+        $this->rateDtoMock
+            ->expects($this->once())
+            ->method('toArray')
+            ->willReturn($rateData);
+
         $restRequest = new HttpRequest();
         $restRequest
-            ->withMethod(Request::METHOD_GET)
-            ->withUrl(Api::URL_RATE);
+            ->withUrl(Api::URL_RATE)
+            ->withBody($rateData);
 
         $this->clientMock
             ->expects($this->once())
@@ -272,6 +259,9 @@ class ApiClientTest extends TestCase
             ->with($this->equalTo($restRequest))
             ->willReturn($this->responseMock);
 
-        $this->assertInstanceOf(ResponseInterface::class, $this->apiClient->getRates());
+        $this->assertInstanceOf(
+            ResponseInterface::class,
+            $this->apiClient->getRates($this->rateDtoMock)
+        );
     }
 }

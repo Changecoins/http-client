@@ -19,7 +19,7 @@ class InvoiceCreateRequestValidator extends AbstractValidator
             new NotEmpty('amount'),
             new NotEmpty('currency'),
             new NotEmpty('nonce'),
-            new Url('returnUrl'),
+            new Url('return_url'),
         ];
     }
 }

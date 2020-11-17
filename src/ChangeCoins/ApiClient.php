@@ -7,12 +7,12 @@ namespace ChangeCoins;
 use ChangeCoins\Dto\BalanceDto;
 use ChangeCoins\Dto\DepositDto;
 use ChangeCoins\Dto\InvoiceDto;
-use ChangeCoins\Dto\OutcomeSendDto;
+use ChangeCoins\Dto\WithdrawalDto;
+use ChangeCoins\Dto\RateDto;
 use ChangeCoins\Dto\TransactionDto;
 use ChangeCoins\Enum\Api;
 use ChangeCoins\Factory\ClientFactoryInterface;
 use ChangeCoins\Request\HttpRequest;
-use ChangeCoins\Request\Request;
 use ChangeCoins\Request\ResponseInterface;
 
 class ApiClient implements ApiClientInterface
@@ -59,7 +59,7 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function moneySend(OutcomeSendDto $outcomeSendDto): ResponseInterface
+    public function createWithdrawal(WithdrawalDto $outcomeSendDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
@@ -85,19 +85,6 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function invoiceStatus(InvoiceDto $invoiceStatusDto): ResponseInterface
-    {
-        $request = new HttpRequest();
-        $request
-            ->withUrl(Api::URL_INVOICE_STATUS)
-            ->withBody($invoiceStatusDto->toArray());
-
-        return $this->client->sendRequest($request);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function transactionStatus(TransactionDto $transactionDto): ResponseInterface
     {
         $request = new HttpRequest();
@@ -111,12 +98,12 @@ class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function getRates(): ResponseInterface
+    public function getRates(RateDto $rateDto): ResponseInterface
     {
         $request = new HttpRequest();
         $request
-            ->withMethod(Request::METHOD_GET)
-            ->withUrl(Api::URL_RATE);
+            ->withUrl(Api::URL_RATE)
+            ->withBody($rateDto->toArray());
 
         return $this->client->sendRequest($request);
     }

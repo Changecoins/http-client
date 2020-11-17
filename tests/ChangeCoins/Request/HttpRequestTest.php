@@ -13,7 +13,7 @@ class HttpRequestTest extends TestCase
      * @var string[]
      */
     private $defaultHeaders = [
-        'Accept' => 'Application/json',
+        'Accept: application/json',
     ];
 
     /**
@@ -45,9 +45,9 @@ class HttpRequestTest extends TestCase
     public function testWithHeaders(): void
     {
         $testHeaders = [
-            'header-name-1' => 'header-value-1',
-            'header-name-2' => 'header-value-2',
-            'header-name-3' => 'header-value-3',
+            'header-name-1: header-value-1',
+            'header-name-2: header-value-2',
+            'header-name-3: header-value-3',
         ];
 
         $this->request->withHeaders($testHeaders);
@@ -66,9 +66,9 @@ class HttpRequestTest extends TestCase
             array_merge(
                 $this->defaultHeaders,
                 [
-                    'header-name-1' => 'header-value-1',
-                    'header-name-2' => 'header-value-2',
-                    'header-name-3' => 'header-value-3',
+                    'header-name-1: header-value-1',
+                    'header-name-2: header-value-2',
+                    'header-name-3: header-value-3',
                 ]
             ),
             $this->request->getHeaders()
@@ -82,7 +82,7 @@ class HttpRequestTest extends TestCase
 
     public function testHasHeader(): void
     {
-        $this->assertTrue($this->request->hasHeader('Accept'));
+        $this->assertTrue($this->request->hasHeader('Accept: application/json'));
         $this->assertFalse($this->request->hasHeader('Client'));
     }
 

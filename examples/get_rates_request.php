@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use ChangeCoins\ClientFacade;
+use ChangeCoins\Dto\RateDto;
 use ChangeCoins\Exception\ResponseValidationException;
 use ChangeCoins\Factory\RequestConfig;
 
@@ -12,9 +13,15 @@ $clientFacade = new ClientFacade(new RequestConfig('secretKey', 'publicKey'));
 $client       = $clientFacade->createClient();
 
 try {
-    $result = $client->getRates()->toArray();
+    $rateDto = new RateDto();
+    $rateDto
+        ->setCurrencyFrom('BTC')
+        ->setCurrencyTo('USD')
+        ->setNonce(time());
 
-    echo json_encode($result, JSON_PRETTY_PRINT);
+    $result = $client->getRates($rateDto)->toArray();
+
+    // Your business logic
 } catch (ResponseValidationException $exception) {
     echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
 }

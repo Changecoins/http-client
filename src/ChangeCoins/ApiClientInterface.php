@@ -7,7 +7,8 @@ namespace ChangeCoins;
 use ChangeCoins\Dto\BalanceDto;
 use ChangeCoins\Dto\DepositDto;
 use ChangeCoins\Dto\InvoiceDto;
-use ChangeCoins\Dto\OutcomeSendDto;
+use ChangeCoins\Dto\WithdrawalDto;
+use ChangeCoins\Dto\RateDto;
 use ChangeCoins\Dto\TransactionDto;
 use ChangeCoins\Factory\ClientFactoryInterface;
 use ChangeCoins\Request\ResponseInterface;
@@ -34,11 +35,11 @@ interface ApiClientInterface
     public function depositCreate(DepositDto $invoiceCreateDto): ResponseInterface;
 
     /**
-     * @param OutcomeSendDto $outcomeSendDto
+     * @param WithdrawalDto $outcomeSendDto
      *
      * @return ResponseInterface
      */
-    public function moneySend(OutcomeSendDto $outcomeSendDto): ResponseInterface;
+    public function createWithdrawal(WithdrawalDto $outcomeSendDto): ResponseInterface;
 
     /**
      * @param InvoiceDto $invoiceCreateDto
@@ -48,13 +49,6 @@ interface ApiClientInterface
     public function invoiceCreate(InvoiceDto $invoiceCreateDto): ResponseInterface;
 
     /**
-     * @param InvoiceDto $invoiceCreateDto
-     *
-     * @return ResponseInterface
-     */
-    public function invoiceStatus(InvoiceDto $invoiceCreateDto): ResponseInterface;
-
-    /**
      * @param TransactionDto $invoiceCreateDto
      *
      * @return ResponseInterface
@@ -62,7 +56,9 @@ interface ApiClientInterface
     public function transactionStatus(TransactionDto $invoiceCreateDto): ResponseInterface;
 
     /**
+     * @param RateDto $rateDto
+     *
      * @return ResponseInterface
      */
-    public function getRates(): ResponseInterface;
+    public function getRates(RateDto $rateDto): ResponseInterface;
 }

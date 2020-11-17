@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 use ChangeCoins\ClientFacade;
-use ChangeCoins\Dto\InvoiceDto;
+use ChangeCoins\Dto\WithdrawalDto;
+use ChangeCoins\Dto\UserDataDto;
 use ChangeCoins\Exception\ResponseValidationException;
 use ChangeCoins\Factory\RequestConfig;
 
@@ -13,12 +14,20 @@ $clientFacade = new ClientFacade(new RequestConfig('secretKey', 'publicKey'));
 $client       = $clientFacade->createClient();
 
 try {
-    $invoiceDto = new InvoiceDto();
-    $invoiceDto
+    $userDataDto = new UserDataDto();
+    $userDataDto->setPayee('receiver-address');
+
+    $withdrawalDto = new WithdrawalDto();
+    $withdrawalDto
         ->setExternalId('your-internal-id')
+        ->setAmount(0.01)
+        ->setCurrency('LTC')
+        ->setUserData($userDataDto)
         ->setNonce(time());
 
-    $response = $client->invoiceStatus($invoiceDto)->toArray();
+    $result = $client->createWithdrawal($withdrawalDto)->toArray();
+
+    // Your business logic
 } catch (ResponseValidationException $exception) {
     echo sprintf('Error msg: %s. Error code: %s.', $exception->getMessage(), $exception->getCode());
 }
