@@ -26,13 +26,12 @@ class UrlTest extends TestCase
         $testAttributeName = 'test-name';
 
         $this->validatorMock
-            ->expects($this->exactly(4))
+            ->expects($this->exactly(2))
             ->method('addError')
             ->with($this->equalTo(sprintf('The "%s" parameter is not a valid url!', $testAttributeName)));
 
         $constraint = new Url($testAttributeName);
 
-        $constraint([], $this->validatorMock);
         $constraint([$testAttributeName => ''], $this->validatorMock);
         $constraint([$testAttributeName => '  '], $this->validatorMock);
         $constraint([$testAttributeName => null], $this->validatorMock);

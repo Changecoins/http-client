@@ -27,8 +27,8 @@ class Url implements ConstraintInterface
     public function __invoke(array $data, ValidatorInterface $validator): void
     {
         if (
-            !array_key_exists($this->attributeName, $data) ||
-            $data[$this->attributeName] === '' ||
+            array_key_exists($this->attributeName, $data) &&
+            $data[$this->attributeName] !== null &&
             !filter_var($data[$this->attributeName], FILTER_VALIDATE_URL)
         ) {
             $validator->addError(sprintf('The "%s" parameter is not a valid url!', $this->attributeName));
