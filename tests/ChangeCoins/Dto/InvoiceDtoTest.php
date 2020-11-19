@@ -52,7 +52,7 @@ class InvoiceDtoTest extends TestCase
     public function invoiceDtoDataProvider(): array
     {
         return [
-            'full filled Dto' => [
+            'full filled Dto'      => [
                 [
                     'externalid'       => 'external-id',
                     'title'            => 'test tile',
@@ -64,6 +64,7 @@ class InvoiceDtoTest extends TestCase
                     'return_url'       => 'http://test-return-url.com',
                     'callback_url'     => 'http://test-callback-url.com',
                     'nonce'            => 300,
+                    'type'             => 'invoice',
                 ],
             ],
             'partially_filled Dto' => [
@@ -78,6 +79,7 @@ class InvoiceDtoTest extends TestCase
                     'return_url'       => null,
                     'callback_url'     => null,
                     'nonce'            => 300,
+                    'type'             => 'invoice',
                 ],
             ]
         ];

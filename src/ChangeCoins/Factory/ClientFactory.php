@@ -18,7 +18,6 @@ use ChangeCoins\Transport\CurlTransport;
 use ChangeCoins\Validator\BalanceRequestValidator;
 use ChangeCoins\Validator\DepositCreateRequestValidator;
 use ChangeCoins\Validator\InvoiceCreateRequestValidator;
-use ChangeCoins\Validator\InvoiceStatusRequestValidator;
 use ChangeCoins\Validator\OutcomeSendRequestValidator;
 use ChangeCoins\Validator\TransactionRequestValidator;
 
@@ -67,7 +66,6 @@ class ClientFactory implements ClientFactoryInterface
         $validatorStorage->add(Api::URL_BALANCE, new BalanceRequestValidator());
         $validatorStorage->add(Api::URL_DEPOSIT_CREATE, new DepositCreateRequestValidator());
         $validatorStorage->add(Api::URL_INVOICE_CREATE, new InvoiceCreateRequestValidator());
-        $validatorStorage->add(Api::URL_INVOICE_STATUS, new InvoiceStatusRequestValidator());
         $validatorStorage->add(Api::URL_OUTCOME_SEND, new OutcomeSendRequestValidator());
         $validatorStorage->add(Api::URL_TRANSACTION_STATUS, new TransactionRequestValidator());
 
