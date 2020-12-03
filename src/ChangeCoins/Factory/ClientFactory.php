@@ -24,14 +24,14 @@ use ChangeCoins\Validator\TransactionRequestValidator;
 class ClientFactory implements ClientFactoryInterface
 {
     /**
-     * @var RequestConfig
+     * @var RequestConfigInterface
      */
     private $requestConfig;
 
     /**
-     * @param RequestConfig $requestConfig
+     * @param RequestConfigInterface $requestConfig
      */
-    public function __construct(RequestConfig $requestConfig)
+    public function __construct(RequestConfigInterface $requestConfig)
     {
         $this->requestConfig = $requestConfig;
     }
