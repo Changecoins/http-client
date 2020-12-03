@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ChangeCoins\Transport;
 
 use ChangeCoins\Exception\ConfigurationException;
-use ChangeCoins\Factory\RequestConfig;
+use ChangeCoins\Factory\RequestConfigInterface;
 use ChangeCoins\Request\HttpResponse;
 use ChangeCoins\Request\RequestInterface;
 use ChangeCoins\Request\ResponseInterface;
@@ -13,7 +13,7 @@ use ChangeCoins\Request\ResponseInterface;
 class CurlTransport implements TransportInterface
 {
     /**
-     * @var RequestConfig
+     * @var RequestConfigInterface
      */
     private $requestConfig;
 
@@ -23,9 +23,9 @@ class CurlTransport implements TransportInterface
     private $curl;
 
     /**
-     * @param RequestConfig $requestConfig
+     * @param RequestConfigInterface $requestConfig
      */
-    public function __construct(RequestConfig $requestConfig)
+    public function __construct(RequestConfigInterface $requestConfig)
     {
         if (!function_exists("curl_init")) {
             throw new ConfigurationException("Curl module is not available on this system");

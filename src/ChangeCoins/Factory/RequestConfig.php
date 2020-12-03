@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChangeCoins\Factory;
 
-class RequestConfig
+final class RequestConfig implements RequestConfigInterface
 {
     /**
      * @var string

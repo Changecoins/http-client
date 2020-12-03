@@ -17,9 +17,9 @@ class ClientFactoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->requestConfigMock = $this->getMockBuilder(RequestConfig::class)
+        $this->requestConfigMock = $this->getMockBuilder(RequestConfigInterface::class)
             ->disableOriginalConstructor()
-            ->getMock();
+            ->getMockForAbstractClass();
     }
 
     public function testCreate(): void
