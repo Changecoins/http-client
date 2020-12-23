@@ -3,7 +3,7 @@
 ## Client usage
 
 To initialize **http-client** you should provide your `secretKey` and `publicKey`.
-If you do not have them, you can connect with us [info@changecoins.io](mailto:info@changecoins.io).
+If you do not have them, you can connect with us [tech@changecoins.io](mailto:tech@changecoins.io).
 
 To initialize http-client you should provide your `secretKey` and `publicKey`.
 
