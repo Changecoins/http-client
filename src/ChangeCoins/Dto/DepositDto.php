@@ -24,11 +24,6 @@ class DepositDto
     private $description;
 
     /**
-     * @var float
-     */
-    private $amount = 0.00;
-
-    /**
      * @var string|null
      */
     private $currency;
@@ -163,7 +158,6 @@ class DepositDto
             'externalid'       => $this->externalId,
             'title'            => $this->title,
             'description'      => $this->description,
-            'amount'           => $this->amount,
             'currency'         => $this->currency,
             'currency_convert' => $this->currencyConvert,
             'limit_minute'     => $this->limitMinute,

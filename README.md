@@ -35,7 +35,7 @@ $balanceDto->setNonce(time());
 
 $result = $client->getBalance($balanceDto)->toArray();
 ```
-> All request examples you can find [here](https://github.com/changecoins/php-client).
+> All request examples you can find [here](https://github.com/Changecoins/http-client/tree/master/examples).
 
 ## Validation errors
 
@@ -51,4 +51,4 @@ Response HTTP status code will be 200 and the response body:
 
 If the server will return a validation error, the client will throw `ResponseValidationException`.
 This type of exception extends `\RuntimeException` class
-You can find out how does our API works [here](https://changecoins.postman.co/collections/13288095-9742a431-c6f9-4d76-9a8e-8bc6a55dd72c?version=latest&workspace=987b5dd4-f368-427b-8959-3705d9b33f53).
+You can find out how does our API works [here](https://documenter.getpostman.com/view/13288095/TVsvfS6E).
