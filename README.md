@@ -35,7 +35,7 @@ $balanceDto->setNonce(time());
 
 $result = $client->getBalance($balanceDto)->toArray();
 ```
-> All request examples you can find [here](https://github.com/changecoins/php-client).
+> All request examples you can find [here](https://github.com/Changecoins/http-client/tree/master/examples).
 
 ## Validation errors
 
