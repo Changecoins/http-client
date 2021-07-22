@@ -60,6 +60,6 @@ class RequestSignerMiddleware implements RequestMiddlewareInterface
      */
     private function cratePayload(RequestInterface $request): string
     {
-        return base64_encode(json_encode($request->getBody(), JSON_UNESCAPED_SLASHES));
+        return base64_encode(json_encode($request->getBody()));
     }
 }
