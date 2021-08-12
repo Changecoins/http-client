@@ -10,6 +10,8 @@ class HttpResponse implements ResponseInterface
 {
     use CommonResponseTrait;
 
+    private $statusCode;
+
     /**
      * @var array|null
      */
@@ -40,7 +42,11 @@ class HttpResponse implements ResponseInterface
      */
     public function getStatusCode(): int
     {
-        return (int) curl_getinfo($this->curlResource, CURLINFO_RESPONSE_CODE);
+        if ($this->statusCode === null) {
+            $this->statusCode = (int) curl_getinfo($this->curlResource, CURLINFO_RESPONSE_CODE);
+        }
+
+        return $this->statusCode;
     }
 
     /**
