@@ -5,3 +5,7 @@ This changelog references the relevant changes (bug and security fixes) done in 
 
 v1.0.2
  1.  Removed unused field *amount* for **Create a deposit** endpoint.
+
+
+v1.0.3
+ 1.  Removed unused field *updated_at* for **Create a deposit** endpoint.
