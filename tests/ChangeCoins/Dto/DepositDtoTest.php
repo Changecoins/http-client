@@ -9,42 +9,42 @@ use PHPUnit\Framework\TestCase;
 class DepositDtoTest extends TestCase
 {
     /**
-     * @param array $invoiceData
+     * @param array $depositData
      *
-     * @dataProvider invoiceDtoDataProvider
+     * @dataProvider depositDtoDataProvider
      */
-    public function testToArray(array $invoiceData): void
+    public function testToArray(array $depositData): void
     {
-        $invoiceCreateDto = new DepositDto();
+        $depositCreateDto = new DepositDto();
 
-        $invoiceCreateDto->setExternalId($invoiceData['externalid']);
-        $invoiceCreateDto->setCurrency($invoiceData['currency']);
-        $invoiceCreateDto->setCurrencyConvert($invoiceData['currency_convert']);
-        $invoiceCreateDto->setNonce($invoiceData['nonce']);
+        $depositCreateDto->setExternalId($depositData['externalid']);
+        $depositCreateDto->setCurrency($depositData['currency']);
+        $depositCreateDto->setCurrencyConvert($depositData['currency_convert']);
+        $depositCreateDto->setNonce($depositData['nonce']);
 
-        if ($invoiceData['title'] !== null) {
-            $invoiceCreateDto->setTitle($invoiceData['title']);
+        if ($depositData['title'] !== null) {
+            $depositCreateDto->setTitle($depositData['title']);
         }
 
-        if ($invoiceData['description'] !== null) {
-            $invoiceCreateDto->setDescription($invoiceData['description']);
+        if ($depositData['description'] !== null) {
+            $depositCreateDto->setDescription($depositData['description']);
         }
 
-        if ($invoiceData['limit_minute'] !== null) {
-            $invoiceCreateDto->setLimitMinute($invoiceData['limit_minute']);
+        if ($depositData['limit_minute'] !== null) {
+            $depositCreateDto->setLimitMinute($depositData['limit_minute']);
         }
 
-        if ($invoiceData['callback_url'] !== null) {
-            $invoiceCreateDto->setCallbackUrl($invoiceData['callback_url']);
+        if ($depositData['callback_url'] !== null) {
+            $depositCreateDto->setCallbackUrl($depositData['callback_url']);
         }
 
-        $this->assertEquals($invoiceData, $invoiceCreateDto->toArray());
+        $this->assertEquals($depositData, $depositCreateDto->toArray());
     }
 
     /**
      * @return array[][]
      */
-    public function invoiceDtoDataProvider(): array
+    public function depositDtoDataProvider(): array
     {
         return [
             'full filled Dto'      => [
@@ -52,11 +52,9 @@ class DepositDtoTest extends TestCase
                     'externalid'       => 'external-id',
                     'title'            => 'test tile',
                     'description'      => 'test description',
-                    'amount'           => 0.00,
                     'currency'         => 'USD',
                     'currency_convert' => 'EUR',
                     'limit_minute'     => 6,
-                    'return_url'       => ' ',
                     'callback_url'     => 'http://test-callback-url.com',
                     'nonce'            => 300,
                     'type'             => 'deposit',
@@ -67,11 +65,9 @@ class DepositDtoTest extends TestCase
                     'externalid'       => 'external-id',
                     'title'            => null,
                     'description'      => null,
-                    'amount'           => 0.00,
                     'currency'         => 'USD',
                     'currency_convert' => 'EUR',
                     'limit_minute'     => null,
-                    'return_url'       => ' ',
                     'callback_url'     => null,
                     'nonce'            => 300,
                     'type'             => 'deposit',

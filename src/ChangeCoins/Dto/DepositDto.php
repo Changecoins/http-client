@@ -39,11 +39,6 @@ class DepositDto
     private $limitMinute;
 
     /**
-     * @var string
-     */
-    private $returnUrl = ' ';
-
-    /**
      * @var string|null
      */
     private $callbackUrl;
@@ -161,7 +156,6 @@ class DepositDto
             'currency'         => $this->currency,
             'currency_convert' => $this->currencyConvert,
             'limit_minute'     => $this->limitMinute,
-            'return_url'       => $this->returnUrl,
             'callback_url'     => $this->callbackUrl,
             'nonce'            => $this->nonce,
             'type'             => self::TYPE,
