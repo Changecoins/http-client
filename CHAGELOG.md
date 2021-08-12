@@ -9,3 +9,7 @@ v1.0.2
 
 v1.0.3
  1.  Removed unused field *updated_at* for **Create a deposit** endpoint.
+
+
+v1.0.4
+ 1.  Store http status code inside HttpResponse class before curl resource has been destructed.
