@@ -54,6 +54,11 @@ class InvoiceDto
     private $callbackUrl;
 
     /**
+     * @var string|null
+     */
+    private $email;
+
+    /**
      * @var int|null
      */
     private $nonce;
@@ -167,6 +172,18 @@ class InvoiceDto
     }
 
     /**
+     * @param string $email
+     *
+     * @return InvoiceDto
+     */
+    public function setEmail(string $email): InvoiceDto
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
      * @param int $nonce
      *
      * @return InvoiceDto
@@ -193,6 +210,7 @@ class InvoiceDto
             'limit_minute'     => $this->limitMinute,
             'return_url'       => $this->returnUrl,
             'callback_url'     => $this->callbackUrl,
+            'email'            => $this->email,
             'nonce'            => $this->nonce,
             'type'             => self::TYPE,
         ];
