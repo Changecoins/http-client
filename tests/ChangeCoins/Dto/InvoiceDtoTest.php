@@ -43,6 +43,10 @@ class InvoiceDtoTest extends TestCase
             $invoiceCreateDto->setCallbackUrl($invoiceData['callback_url']);
         }
 
+        if ($invoiceData['email'] !== null) {
+            $invoiceCreateDto->setEmail($invoiceData['email']);
+        }
+
         $this->assertEquals($invoiceData, $invoiceCreateDto->toArray());
     }
 
@@ -63,6 +67,7 @@ class InvoiceDtoTest extends TestCase
                     'limit_minute'     => 6,
                     'return_url'       => 'http://test-return-url.com',
                     'callback_url'     => 'http://test-callback-url.com',
+                    'email'            => 'test@test.com',
                     'nonce'            => 300,
                     'type'             => 'invoice',
                 ],
@@ -78,6 +83,7 @@ class InvoiceDtoTest extends TestCase
                     'limit_minute'     => null,
                     'return_url'       => null,
                     'callback_url'     => null,
+                    'email'            => 'test@test.com',
                     'nonce'            => 300,
                     'type'             => 'invoice',
                 ],
