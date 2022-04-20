@@ -13,3 +13,11 @@ v1.0.3
 
 v1.0.4
  1.  Store http status code inside HttpResponse class before curl resource has been destructed.
+
+v1.0.5
+ 1. Added missed field `email` to **InvoiceDto**.
+
+v1.0.6
+ 1. Added missed field `memo` to **UserDataDto**.
+ 2. Updated unit test for **UserDataDtoTest**.
+ 3. Fixed unit tests for changes than have been made in v.1.0.5.
