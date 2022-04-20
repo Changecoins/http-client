@@ -12,6 +12,11 @@ class UserDataDto
     private $payee;
 
     /**
+     * @var string|null
+     */
+    private $memo;
+
+    /**
      * @param string $payee
      *
      * @return UserDataDto
@@ -24,14 +29,27 @@ class UserDataDto
     }
 
     /**
+     * @param string $memo
+     *
+     * @return UserDataDto
+     */
+    public function setMemo(string $memo): UserDataDto
+    {
+        $this->memo = $memo;
+
+        return $this;
+    }
+
+    /**
      * @return (null|string)[]
      *
-     * @psalm-return array{payee: null|string}
+     * @psalm-return array{payee: null|string, memo: null|string}
      */
     public function toArray(): array
     {
         return [
             'payee' => $this->payee,
+            'memo'  => $this->memo,
         ];
     }
 }
