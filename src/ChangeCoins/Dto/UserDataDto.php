@@ -17,6 +17,11 @@ class UserDataDto
     private $memo;
 
     /**
+     * @var array
+     */
+    private $optional = [];
+
+    /**
      * @param string $payee
      *
      * @return UserDataDto
@@ -41,15 +46,28 @@ class UserDataDto
     }
 
     /**
+     * @param array $optional
+     *
+     * @return UserDataDto
+     */
+    public function setOptional(array $optional = []): UserDataDto
+    {
+        $this->optional = $optional;
+
+        return $this;
+    }
+
+    /**
      * @return (null|string)[]
      *
-     * @psalm-return array{payee: null|string, memo: null|string}
+     * @psalm-return array{payee: null|string, memo: null|string, optional: array}
      */
     public function toArray(): array
     {
         return [
-            'payee' => $this->payee,
-            'memo'  => $this->memo,
+            'payee'    => $this->payee,
+            'memo'     => $this->memo,
+            'optional' => $this->optional,
         ];
     }
 }

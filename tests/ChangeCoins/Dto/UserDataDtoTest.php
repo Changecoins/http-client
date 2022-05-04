@@ -18,7 +18,7 @@ class UserDataDtoTest extends TestCase
         $userDataDto->setMemo($testMemo);
 
         $this->assertEquals(
-            ['payee' => $testPayee, 'memo' => $testMemo],
+            ['payee' => $testPayee, 'memo' => $testMemo, 'optional' => []],
             $userDataDto->toArray()
         );
     }

@@ -21,3 +21,7 @@ v1.0.6
  1. Added missed field `memo` to **UserDataDto**.
  2. Updated unit test for **UserDataDtoTest**.
  3. Fixed unit tests for changes than have been made in v.1.0.5.
+
+v1.0.6
+ 1. Added `optional` field to **UserDataDto**.
+
