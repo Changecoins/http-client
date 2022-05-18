@@ -11,14 +11,38 @@ class UserDataDtoTest extends TestCase
     public function testToArray(): void
     {
         $testPayee = 'test-payee';
-        $testMemo = '456';
+        $testMemo  = '456';
+        $firstName = 'Foo';
+        $lastName  = 'Boo';
+        $email     = 'foo@test.com';
+        $phone     = null;
+        $address   = null;
+        $bankId    = null;
+        $bankName  = null;
 
-        $userDataDto = new UserDataDto();
-        $userDataDto->setPayee($testPayee);
-        $userDataDto->setMemo($testMemo);
+        $userDataDto = (new UserDataDto())
+            ->setPayee($testPayee)
+            ->setMemo($testMemo)
+            ->setFirstName($firstName)
+            ->setLastName($lastName)
+            ->setEmail($email)
+            ->setPhone($phone)
+            ->setAddress($address)
+            ->setBankId($bankId)
+            ->setBankName($bankName);
 
         $this->assertEquals(
-            ['payee' => $testPayee, 'memo' => $testMemo, 'optional' => []],
+            [
+                'payee'           => $testPayee,
+                'memo'            => $testMemo,
+                'first_name'      => $firstName,
+                'last_name'       => $lastName,
+                'phone'           => $phone,
+                'email'           => $email,
+                'customerAddress' => $address,
+                'bankId'          => $bankId,
+                'bankName'        => $bankName,
+            ],
             $userDataDto->toArray()
         );
     }
