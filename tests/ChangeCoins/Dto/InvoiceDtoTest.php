@@ -47,6 +47,10 @@ class InvoiceDtoTest extends TestCase
             $invoiceCreateDto->setEmail($invoiceData['email']);
         }
 
+        if ($invoiceData['cardholder_name'] !== null) {
+            $invoiceCreateDto->setCardholderName($invoiceData['cardholder_name']);
+        }
+
         $this->assertEquals($invoiceData, $invoiceCreateDto->toArray());
     }
 
@@ -70,6 +74,7 @@ class InvoiceDtoTest extends TestCase
                     'email'            => 'test@test.com',
                     'nonce'            => 300,
                     'type'             => 'invoice',
+                    'cardholder_name'  => 'test-card-holder-name',
                 ],
             ],
             'partially_filled Dto' => [
@@ -86,6 +91,7 @@ class InvoiceDtoTest extends TestCase
                     'email'            => 'test@test.com',
                     'nonce'            => 300,
                     'type'             => 'invoice',
+                    'cardholder_name'  => null,
                 ],
             ]
         ];
