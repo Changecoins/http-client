@@ -9,7 +9,7 @@ use ChangeCoins\Factory\RequestConfig;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$clientFacade = new ClientFacade(new RequestConfig('secretKey', 'publicKey'));
+$clientFacade = new ClientFacade(new RequestConfig('publicKey', 'secretKey'));
 $client       = $clientFacade->createClient();
 
 try {
