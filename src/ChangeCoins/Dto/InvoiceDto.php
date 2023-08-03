@@ -64,6 +64,11 @@ class InvoiceDto
     private $nonce;
 
     /**
+     * @var string|null
+     */
+    private $cardholderName = null;
+
+    /**
      * @param string $externalId
      *
      * @return InvoiceDto
@@ -196,6 +201,18 @@ class InvoiceDto
     }
 
     /**
+     * @param string|null $cardholderName
+     *
+     * @return InvoiceDto
+     */
+    public function setCardholderName(?string $cardholderName = null): InvoiceDto
+    {
+        $this->cardholderName = $cardholderName;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array
@@ -213,6 +230,7 @@ class InvoiceDto
             'email'            => $this->email,
             'nonce'            => $this->nonce,
             'type'             => self::TYPE,
+            'cardholder_name'  => $this->cardholderName,
         ];
     }
 }
