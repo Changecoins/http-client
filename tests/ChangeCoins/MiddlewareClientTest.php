@@ -51,19 +51,19 @@ class MiddlewareClientTest extends TestCase
     public function testSendRequest(): void
     {
         $this->requestHandlerMock
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('handle')
             ->with($this->equalTo($this->requestMock))
             ->willReturn($this->requestMock);
 
         $this->transportMock
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('sendRequest')
             ->with($this->equalTo($this->requestMock))
             ->willReturn($this->responseMock);
 
         $this->responseHandlerMock
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('handle')
             ->with($this->equalTo($this->responseMock))
             ->willReturn($this->responseMock);
@@ -74,6 +74,7 @@ class MiddlewareClientTest extends TestCase
             $this->responseHandlerMock
         );
 
+        $client->sendRequest($this->requestMock);
         $client->sendRequest($this->requestMock);
     }
 }
