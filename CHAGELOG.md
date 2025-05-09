@@ -1,5 +1,8 @@
 This changelog references the relevant changes (bug and security fixes) done in 1.0.2 minor version.
 
+v1.0.9 (09.05.2025)
+ 1. Apply signing middleware for each multiple requests (bugfix).
+
 v1.0.8 (18.05.2022)
  1. Added Makefile.
  2. Updated **UserDataDto**. The `optional` field has been removed, and a couple of new ones have been added.
