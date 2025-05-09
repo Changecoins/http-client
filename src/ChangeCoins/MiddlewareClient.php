@@ -49,7 +49,9 @@ class MiddlewareClient implements ClientInterface
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        $response = $this->transport->sendRequest($this->requestHandler->handle($request));
+        $handler = clone $this->requestHandler;
+
+        $response = $this->transport->sendRequest($handler->handle($request));
 
         return $this->responseHandler->handle($response);
     }
