@@ -54,6 +54,11 @@ class UserDataDto
     private $bankName;
 
     /**
+     * @var string|null
+     */
+    private $propose;
+    
+    /**
      * @param string $payee
      *
      * @return UserDataDto
@@ -146,7 +151,14 @@ class UserDataDto
 
         return $this;
     }
+    
+    public function setPropose(?string $propose): self
+    {
+        $this->propose = $propose;
 
+        return $this;
+    }
+    
     /**
      * @return (null|string)[]
      *
@@ -174,6 +186,7 @@ class UserDataDto
             'customerAddress' => $this->address,
             'bankId'          => $this->bankId,
             'bankName'        => $this->bankName,
+            'propose'         => $this->propose,
         ];
     }
 }
