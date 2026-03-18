@@ -59,6 +59,11 @@ class UserDataDto
     private $propose;
     
     /**
+     * @var string|null
+     */
+    private $description;
+    
+    /**
      * @param string $payee
      *
      * @return UserDataDto
@@ -159,6 +164,13 @@ class UserDataDto
         return $this;
     }
     
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+    
     /**
      * @return (null|string)[]
      *
@@ -187,6 +199,7 @@ class UserDataDto
             'bankId'          => $this->bankId,
             'bankName'        => $this->bankName,
             'propose'         => $this->propose,
+            'description'     => $this->description,
         ];
     }
 }
